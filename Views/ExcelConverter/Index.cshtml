@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Convert Excel to SQL";
+}
+
+<div class="container">
+    <div class="custom-header">Convert Excel to SQL</div>
+    <form asp-controller="ExcelConverter" asp-action="ConvertToSql" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="excelFile" class="form-label">Upload Excel File:</label>
+            <input type="file" class="form-control" id="excelFile" name="excelFile" />
+        </div>
+        <div class="mb-3">
+            <label for="tableName" class="form-label">Table Name:</label>
+            <input type="text" class="form-control" id="tableName" name="tableName" />
+        </div>
+        <button type="submit" class="btn custom-button">Convert</button>
+    </form>
+
+    @if (ViewBag.SqlStatements != null)
+    {
+        <div class="sql-output">
+            <div class="sql-title">SQL Statements</div>
+            <pre>@string.Join("\n", ViewBag.SqlStatements as List<string>)</pre>
+        </div>
+    }
+</div>
